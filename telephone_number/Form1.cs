@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace telephone_number
 {
     public partial class Form1 : Form
@@ -54,14 +56,14 @@ namespace telephone_number
         {
             string search = txtSearch.Text.ToLower();
 
-            var result = _telephones.Where(t => t.WhoOwns.ToLower().Contains(search)||
+            var result = _telephones.Where(t => t.WhoOwns.ToLower().Contains(search) ||
                                             t.TelephoneNumber.ToString().Contains(search)).ToList();
 
             telephoneList.DataSource = null;
             telephoneList.DataSource = result;
 
             txtSearch.Text = "";
-            
+
         }
 
         private void ClearInputs()
@@ -72,6 +74,43 @@ namespace telephone_number
             txtTelephoneNumber.Clear();
             txtBoxNumber.Clear();
             txtPairNumber.Clear();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(_telephones, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText("telephones.json", json);
+                MessageBox.Show("Номера сохранены");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при сохранении", ex.Message);
+            }
+
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(File.Exists("telephones.json"))
+                {
+                    string json = File.ReadAllText("telephones.json");
+                    _telephones = JsonSerializer.Deserialize<List<Telephone>>(json) ?? new List<Telephone>();
+                    RefreshList();
+                    MessageBox.Show("Номера загружены");
+                }
+                else
+                {
+                    MessageBox.Show("Файл не найден");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при загрузке", ex.Message);
+            }
         }
     }
     class Telephone

@@ -46,6 +46,8 @@
             label7 = new Label();
             txtSearch = new TextBox();
             butnSearch = new Button();
+            btnSave = new Button();
+            btnLoad = new Button();
             SuspendLayout();
             // 
             // label1
@@ -199,11 +201,33 @@
             butnSearch.UseVisualStyleBackColor = true;
             butnSearch.Click += ButnSearch_Click;
             // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(554, 403);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(92, 23);
+            btnSave.TabIndex = 18;
+            btnSave.Text = "Сохранить";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // btnLoad
+            // 
+            btnLoad.Location = new Point(675, 403);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(75, 23);
+            btnLoad.TabIndex = 19;
+            btnLoad.Text = "Загрузить";
+            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(967, 450);
+            Controls.Add(btnLoad);
+            Controls.Add(btnSave);
             Controls.Add(butnSearch);
             Controls.Add(txtSearch);
             Controls.Add(label7);
@@ -248,5 +272,7 @@
         private Label label7;
         private TextBox txtSearch;
         private Button butnSearch;
+        private Button btnSave;
+        private Button btnLoad;
     }
 }
