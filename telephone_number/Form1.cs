@@ -1,4 +1,4 @@
-using System.Text.Json;
+п»їusing System.Text.Json;
 
 namespace telephone_number
 {
@@ -17,7 +17,7 @@ namespace telephone_number
                !int.TryParse(txtBoxNumber.Text, out int bNumber) ||
                 !int.TryParse(txtPairNumber.Text, out int pNumber))
             {
-                MessageBox.Show("Введите корректные числовые значения", "Ошибка ввода", MessageBoxButtons.OK);
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ С‡РёСЃР»РѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ", "РћС€РёР±РєР° РІРІРѕРґР°", MessageBoxButtons.OK);
                 return;
             }
 
@@ -82,11 +82,11 @@ namespace telephone_number
             {
                 string json = JsonSerializer.Serialize(_telephones, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText("telephones.json", json);
-                MessageBox.Show("Номера сохранены");
+                MessageBox.Show("РќРѕРјРµСЂР° СЃРѕС…СЂР°РЅРµРЅС‹");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при сохранении", ex.Message);
+                MessageBox.Show("РћС€РёР±РєР° РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё", ex.Message);
             }
 
         }
@@ -100,16 +100,16 @@ namespace telephone_number
                     string json = File.ReadAllText("telephones.json");
                     _telephones = JsonSerializer.Deserialize<List<Telephone>>(json) ?? new List<Telephone>();
                     RefreshList();
-                    MessageBox.Show("Номера загружены");
+                    MessageBox.Show("РќРѕРјРµСЂР° Р·Р°РіСЂСѓР¶РµРЅС‹");
                 }
                 else
                 {
-                    MessageBox.Show("Файл не найден");
+                    MessageBox.Show("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при загрузке", ex.Message);
+                MessageBox.Show("РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ", ex.Message);
             }
         }
     }
@@ -137,7 +137,7 @@ namespace telephone_number
 
         public override string ToString()
         {
-            return $"{TelephoneNumber} - {Shop} {Subdivision} {WhoOwns} номер бокса {BoxNumber} номер пары {PairNumber}";
+            return $"{TelephoneNumber} - {Shop} {Subdivision} {WhoOwns} РЅРѕРјРµСЂ Р±РѕРєСЃР° {BoxNumber} РЅРѕРјРµСЂ РїР°СЂС‹ {PairNumber}";
         }
 
     }
